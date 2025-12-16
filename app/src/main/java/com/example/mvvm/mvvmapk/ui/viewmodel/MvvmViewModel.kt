@@ -1,4 +1,4 @@
-package com.example.mvvm.ui.viewmodel
+package com.example.mvvm.mvvmapk.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
