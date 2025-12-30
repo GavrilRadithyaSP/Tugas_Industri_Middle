@@ -3,6 +3,7 @@ package com.example.mvvm.mvvmapk.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -10,11 +11,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm.R
 import com.example.mvvm.databinding.ActivityMvvmBinding
+//import com.example.mvvm.mvvmapk.ui.viewmodel.Factory
 import com.example.mvvm.mvvmapk.ui.viewmodel.MvvmViewModel
+import com.example.mvvm.session.PrefsMiddleApps
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MvvmActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MvvmViewModel
+    private val viewModel: MvvmViewModel by viewModels()
     private lateinit var binding: ActivityMvvmBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +33,11 @@ class MvvmActivity : AppCompatActivity() {
             insets
         }
 
-        viewModel = ViewModelProvider(this)[MvvmViewModel::class.java]
+//        val session = PrefsMiddleApps(this)
+//        val factory = Factory(session)
+
+//        viewModel = ViewModelProvider(this)[MvvmViewModel::class.java]
+//        viewModel = ViewModelProvider(this, factory)[MvvmViewModel::class.java]
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btnChangeNoMvvm.setOnClickListener {

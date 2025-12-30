@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.daggerHilt)
 }
 
 android {
@@ -34,9 +36,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
+    }
+    packagingOptions {
+        exclude ("META-INF/DEPENDENCIES")
     }
 }
 
@@ -50,8 +55,11 @@ dependencies {
     implementation(libs.ssp)
     implementation(libs.sdp)
     implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
     implementation(libs.room.ktx)
+    implementation(libs.activity.ktx)
+    implementation(libs.daggerHilt)
+    ksp(libs.daggerHiltCompiler)
+    kapt(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
