@@ -1,4 +1,4 @@
-package com.example.mvvm.mvvmapk.ui
+package com.gavril.midapps.mvvmapk.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,24 +8,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import com.example.mvvm.R
-import com.example.mvvm.databinding.ActivityMvvmBinding
+import com.crocodic.core.base.activity.CoreActivity
+import com.crocodic.core.extension.openActivity
+import com.gavril.midapps.R
+import com.gavril.midapps.databinding.ActivityMvvmBinding
 //import com.example.mvvm.mvvmapk.ui.viewmodel.Factory
-import com.example.mvvm.mvvmapk.ui.viewmodel.MvvmViewModel
-import com.example.mvvm.session.PrefsMiddleApps
+import com.gavril.midapps.mvvmapk.ui.viewmodel.MvvmViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MvvmActivity : AppCompatActivity() {
-
-    private val viewModel: MvvmViewModel by viewModels()
-    private lateinit var binding: ActivityMvvmBinding
+class MvvmActivity : CoreActivity<ActivityMvvmBinding, MvvmViewModel>(R.layout.activity_mvvm) {
+//    private val viewModel: MvvmViewModel by viewModels()
+//    private lateinit var binding: ActivityMvvmBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_mvvm)
+//        binding = DataBindingUtil.setContentView(this,R.layout.activity_mvvm)
 //        setContentView(R.layout.activity_mvvm)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -41,8 +40,7 @@ class MvvmActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btnChangeNoMvvm.setOnClickListener {
-            val intent = Intent(this, NoMvvmActivity::class.java)
-            startActivity(intent)
+            openActivity<NoMvvmActivity>()
         }
     }
 }

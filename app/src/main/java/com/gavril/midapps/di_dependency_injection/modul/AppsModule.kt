@@ -1,7 +1,7 @@
-package com.example.mvvm.di_dependency_injection.modul
+package com.gavril.midapps.di_dependency_injection.modul
 
 import android.content.Context
-import com.example.mvvm.session.PrefsMiddleApps
+import com.gavril.midapps.session.PrefsMiddleApps
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

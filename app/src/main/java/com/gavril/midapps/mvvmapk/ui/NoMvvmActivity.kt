@@ -1,4 +1,4 @@
-package com.example.mvvm.mvvmapk.ui
+package com.gavril.midapps.mvvmapk.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import com.example.mvvm.R
-import com.example.mvvm.databinding.ActivityNoMvvmBinding
+import com.crocodic.core.extension.openActivity
+import com.gavril.midapps.R
+import com.gavril.midapps.databinding.ActivityNoMvvmBinding
 
 class NoMvvmActivity : AppCompatActivity() {
 
@@ -39,8 +40,7 @@ class NoMvvmActivity : AppCompatActivity() {
             binding.tvNoMvvm.text = "$counter"
         }
         binding.btnChangeMvvm.setOnClickListener {
-            val intent = Intent(this, MvvmActivity::class.java)
-            startActivity(intent)
+            openActivity<MvvmActivity>()
         }
     }
 }

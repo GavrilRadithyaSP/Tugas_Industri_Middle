@@ -1,4 +1,4 @@
-package com.example.mvvm
+package com.gavril.midapps
 
 import org.junit.Test
 

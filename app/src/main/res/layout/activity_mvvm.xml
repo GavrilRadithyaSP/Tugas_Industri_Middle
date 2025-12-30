@@ -8,7 +8,7 @@
         
         <variable
             name="viewModel"
-            type="com.example.mvvm.mvvmapk.ui.viewmodel.MvvmViewModel" />
+            type="com.gavril.midapps.mvvmapk.ui.viewmodel.MvvmViewModel" />
         
     </data>
 

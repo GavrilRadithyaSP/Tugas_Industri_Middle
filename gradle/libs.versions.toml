@@ -17,6 +17,11 @@ daggerHilt = "2.57.2"
 ksp = "2.0.21-1.0.27"
 activity-ktx = "1.12.2"
 
+firebaseGms = "4.4.3"
+firebaseCrashlytics = "2.9.2"
+firebasePerf = "1.4.2"
+coreCrocodic = "4.0.11"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -35,6 +40,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-ver
 daggerHilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 daggerHiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-ktx" }
+coreCrocodic = { group = "com.github.crocodic-studio", name = "AndroidCoreProject", version.ref = "coreCrocodic" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -42,3 +48,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+firebaseGms = { id = "com.google.gms.google-services", version.ref = "firebaseGms" }
+firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
+firebasePerf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerf" }

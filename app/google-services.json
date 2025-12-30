@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "871186727086",
+    "project_id": "middletaskapps",
+    "storage_bucket": "middletaskapps.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871186727086:android:edc6964caecd2d238c6d3f",
+        "android_client_info": {
+          "package_name": "com.gavril.midapps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5mWcIfwiCBfrK78h47I19bY-5_GuyJxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

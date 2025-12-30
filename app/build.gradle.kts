@@ -4,14 +4,17 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     alias(libs.plugins.ksp)
     alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.firebaseGms)
+    alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.firebasePerf)
 }
 
 android {
-    namespace = "com.example.mvvm"
+    namespace = "com.gavril.midapps"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.mvvm"
+        applicationId = "com.gavril.midapps"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -58,6 +61,7 @@ dependencies {
     implementation(libs.room.ktx)
     implementation(libs.activity.ktx)
     implementation(libs.daggerHilt)
+    implementation(libs.coreCrocodic)
     ksp(libs.daggerHiltCompiler)
     kapt(libs.room.compiler)
     testImplementation(libs.junit)

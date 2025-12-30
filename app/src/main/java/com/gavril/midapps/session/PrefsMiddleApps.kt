@@ -1,4 +1,4 @@
-package com.example.mvvm.session
+package com.gavril.midapps.session
 
 import android.content.Context
 import android.content.SharedPreferences

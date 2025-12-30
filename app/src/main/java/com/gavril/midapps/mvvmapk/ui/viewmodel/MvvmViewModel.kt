@@ -1,15 +1,15 @@
-package com.example.mvvm.mvvmapk.ui.viewmodel
+package com.gavril.midapps.mvvmapk.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.mvvm.session.PrefsMiddleApps
+import com.crocodic.core.base.viewmodel.CoreViewModel
+import com.gavril.midapps.session.PrefsMiddleApps
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class MvvmViewModel @Inject constructor(private val prefsMiddleApps: PrefsMiddleApps) : ViewModel() {
+class MvvmViewModel @Inject constructor(private val prefsMiddleApps: PrefsMiddleApps) : CoreViewModel() {
 
     private val _count = MutableStateFlow(prefsMiddleApps.getCount())
     val count: StateFlow<Int> = _count
@@ -23,6 +23,10 @@ class MvvmViewModel @Inject constructor(private val prefsMiddleApps: PrefsMiddle
         _count.value -= 5
         prefsMiddleApps.saveCount(_count.value)
     }
+
+    override fun apiLogout() {}
+
+    override fun apiRenewToken() {}
 }
 
 //class Factory(private val prefsMiddleApps: PrefsMiddleApps): ViewModelProvider.Factory{
