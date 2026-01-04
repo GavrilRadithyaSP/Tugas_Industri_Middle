@@ -13,14 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM">
         <activity
-            android:name=".mvvmapk.ui.MvvmActivity"
-            android:exported="true">
+            android:name=".friend_app.ui.AddDetailFriendActivity"
+            android:exported="true" />
+        <activity
+            android:name=".friend_app.ui.ListFriendActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".mvvmapk.ui.MvvmActivity"
+            android:exported="true" />
         <activity
             android:name=".mvvmapk.ui.NoMvvmActivity"
             android:exported="true" />
