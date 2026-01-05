@@ -12,23 +12,21 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.crocodic.core.base.activity.CoreActivity
 import com.gavril.midapps.R
 import com.gavril.midapps.databinding.ActivityAddDetailFriendBinding
 import com.gavril.midapps.friend_app.database.entity.FriendEntity
-import com.gavril.midapps.friend_app.ui.viewmodel.FriendVMFactory
 import com.gavril.midapps.friend_app.ui.viewmodel.FriendViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-class AddDetailFriendActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAddDetailFriendBinding
-    private lateinit var viewModel: FriendViewModel
+@AndroidEntryPoint
+class AddDetailFriendActivity : CoreActivity<ActivityAddDetailFriendBinding, FriendViewModel>(R.layout.activity_add_detail_friend){
     private lateinit var oldFriend: FriendEntity
     private var idFriend: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityAddDetailFriendBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -37,8 +35,6 @@ class AddDetailFriendActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(
             AppCompatDelegate.MODE_NIGHT_NO
         )
-        val viewModelFactory = FriendVMFactory(this)
-        viewModel = ViewModelProvider(this, viewModelFactory)[FriendViewModel::class.java]
         initView()
         binding.btnAdd.setOnClickListener {
             if (idFriend == 0){
