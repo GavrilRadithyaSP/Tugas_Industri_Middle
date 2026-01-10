@@ -10,7 +10,7 @@ data class FriendEntity(
     var school: String,
     var hobby: String,
     @ColumnInfo(defaultValue = "")
-    var phone: String
+    var phoneNumber: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
