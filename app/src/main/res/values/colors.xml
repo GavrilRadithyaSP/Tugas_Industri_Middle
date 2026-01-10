@@ -10,6 +10,8 @@
     <color name="deep_sky_blue">#00BFFF</color>
     <color name="red">#FF0000</color>
     <color name="dark_red">#8B0000</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="gold">#FFD700</color>
     <color name="primary_text">#000000</color>
     <color name="dk_primary_text">#FFFFFF</color>
     <color name="hint_color">#B88CC549</color>

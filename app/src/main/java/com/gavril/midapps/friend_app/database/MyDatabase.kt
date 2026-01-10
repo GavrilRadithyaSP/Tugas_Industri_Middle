@@ -1,6 +1,7 @@
 package com.gavril.midapps.friend_app.database
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,8 +10,11 @@ import com.gavril.midapps.friend_app.database.entity.FriendEntity
 
 @Database(
     entities = [FriendEntity::class],
-    version = 1,
-    exportSchema = false
+    version = 2,
+    exportSchema = true,
+    autoMigrations = [
+        AutoMigration(1,2)
+    ]
 )
 abstract class MyDatabase: RoomDatabase() {
     abstract fun friendDao(): FriendDao

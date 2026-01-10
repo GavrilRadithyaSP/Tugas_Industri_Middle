@@ -48,6 +48,7 @@ class AddDetailFriendActivity : CoreActivity<ActivityAddDetailFriendBinding, Fri
             binding.etName.isEnabled = true
             binding.etSchool.isEnabled = true
             binding.etHobby.isEnabled = true
+            binding.etPhone.isEnabled = true
             binding.btnAdd.text = "Update"
             binding.btnAdd.isVisible = true
             binding.btnEdit.isVisible = false
@@ -60,6 +61,7 @@ class AddDetailFriendActivity : CoreActivity<ActivityAddDetailFriendBinding, Fri
         binding.etName.isEnabled = false
         binding.etSchool.isEnabled = false
         binding.etHobby.isEnabled = false
+        binding.etPhone.isEnabled = false
         binding.btnAdd.isVisible = false
         binding.btnEdit.isVisible = true
         lifecycleScope.launch {
@@ -69,6 +71,7 @@ class AddDetailFriendActivity : CoreActivity<ActivityAddDetailFriendBinding, Fri
                         binding.etName.editText?.setText(friend.name)
                         binding.etSchool.editText?.setText(friend.school)
                         binding.etHobby.editText?.setText(friend.hobby)
+                        binding.etPhone.editText?.setText(friend.phone)
                         oldFriend = friend
                     }
                 }
@@ -79,18 +82,19 @@ class AddDetailFriendActivity : CoreActivity<ActivityAddDetailFriendBinding, Fri
         val name = binding.etName.editText?.text.toString().trim()
         val school = binding.etSchool.editText?.text.toString().trim()
         val hobby = binding.etHobby.editText?.text.toString().trim()
+        val phone = binding.etPhone.editText?.text.toString().trim()
 
-        if (name.isEmpty() || school.isEmpty() || hobby.isEmpty()) {
+        if (name.isEmpty() || school.isEmpty() || hobby.isEmpty() || phone.isEmpty()) {
             Toast.makeText(this, "Please fill the blank form", Toast.LENGTH_SHORT).show()
             return
         }
 
-        if (name == oldFriend.name && school == oldFriend.school && hobby == oldFriend.hobby) {
+        if (name == oldFriend.name && school == oldFriend.school && hobby == oldFriend.hobby && phone == oldFriend.phone) {
             Toast.makeText(this, "There is no change", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val data = oldFriend.copy(name = name, school = school, hobby = hobby).apply {
+        val data = oldFriend.copy(name = name, school = school, hobby = hobby, phone = phone).apply {
             id = idFriend
         }
         lifecycleScope.launch {
@@ -102,13 +106,14 @@ class AddDetailFriendActivity : CoreActivity<ActivityAddDetailFriendBinding, Fri
         val name = binding.etName.editText?.text.toString().trim()
         val school = binding.etSchool.editText?.text.toString().trim()
         val hobby = binding.etHobby.editText?.text.toString().trim()
+        val phone = binding.etPhone.editText?.text.toString().trim()
 
-        if (name.isEmpty() || school.isEmpty() || hobby.isEmpty()) {
+        if (name.isEmpty() || school.isEmpty() || hobby.isEmpty() || phone.isEmpty()) {
             Toast.makeText(this, "Please fill the blank form", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val data = FriendEntity(name, school, hobby)
+        val data = FriendEntity(name, school, hobby, phone)
         lifecycleScope.launch {
             viewModel.insertFriend(data)
         }
