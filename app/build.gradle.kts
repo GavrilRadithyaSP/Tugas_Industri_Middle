@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.ssp)
     implementation(libs.sdp)
+    implementation(libs.splashscreen)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.activity.ktx)
