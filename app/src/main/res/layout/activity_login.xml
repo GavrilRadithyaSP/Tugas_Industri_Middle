@@ -58,7 +58,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:inputType="textPassword"
                 android:text="@={activity.inputPassword}"
                 android:textColor="@color/black"
                 tools:text="" />
@@ -73,6 +73,18 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:background="@drawable/bg_btn_blue"
             android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login_biometric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/bg_btn_blue"
+            android:text="Biometric Login"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp" />

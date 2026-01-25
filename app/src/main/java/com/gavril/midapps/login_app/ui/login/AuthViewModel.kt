@@ -25,6 +25,7 @@ class AuthViewModel @Inject constructor(
                 override suspend fun onSuccess(response: AuthResponse) {
                     session.setValue(LoginActivity.ID, response.id)
                     session.setValue(LoginActivity.USERNAME, response.username)
+                    session.setValue(LoginActivity.PASS, password)
                     session.setValue(LoginActivity.EMAIL, response.email)
                     session.setValue(LoginActivity.FIRST_NAME, response.firstName)
                     session.setValue(LoginActivity.LAST_NAME, response.lastName)

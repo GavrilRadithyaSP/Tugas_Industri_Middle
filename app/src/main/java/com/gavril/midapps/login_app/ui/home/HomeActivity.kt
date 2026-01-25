@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.paging.LOGGER
@@ -13,6 +14,7 @@ import com.crocodic.core.data.CoreSession
 import com.crocodic.core.extension.openActivity
 import com.gavril.midapps.R
 import com.gavril.midapps.databinding.ActivityHomeBinding
+import com.gavril.midapps.login_app.ui.SettingActivity
 import com.gavril.midapps.login_app.ui.login.AuthViewModel
 import com.gavril.midapps.login_app.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +25,7 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, AuthViewModel>(R.layout.a
     @Inject
     lateinit var session: CoreSession
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -37,18 +40,18 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, AuthViewModel>(R.layout.a
             LoginActivity.EMAIL) + "\n" + session.getString(LoginActivity.FIRST_NAME) + "" + session.getString(
             LoginActivity.LAST_NAME)
         binding.tvOutput.text = desc
-        binding.btnLogout.setOnClickListener(this)
+        binding.btnSettings.setOnClickListener (this)
     }
     override fun onClick(v: View?){
         when(v){
-            binding.btnLogout -> logout()
+            binding.btnSettings -> setting()
         }
     }
 
-    private fun logout() {
-        session.clearAll()
+    private fun setting() {
+        /*session.clearAll()
         session.setValue(CoreSession.PREF_UID, 0)
-        finishAffinity()
-        openActivity<LoginActivity>()
+        finishAffinity()*/
+        openActivity<SettingActivity>()
     }
 }

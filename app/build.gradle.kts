@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.activity.ktx)
     implementation(libs.daggerHilt)
     implementation(libs.coreCrocodic)
+    implementation(libs.biometric)
     ksp(libs.daggerHiltCompiler)
     kapt(libs.room.compiler)
     testImplementation(libs.junit)
