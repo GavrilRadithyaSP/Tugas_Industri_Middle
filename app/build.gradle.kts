@@ -20,7 +20,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+/*        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true*/
 
         kapt{
             arguments{
@@ -70,6 +71,7 @@ dependencies {
     implementation(libs.daggerHilt)
     implementation(libs.coreCrocodic)
     implementation(libs.biometric)
+//    implementation(libs.appcompat.v7)
     ksp(libs.daggerHiltCompiler)
     kapt(libs.room.compiler)
     testImplementation(libs.junit)

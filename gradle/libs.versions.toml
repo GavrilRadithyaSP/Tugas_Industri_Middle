@@ -12,6 +12,7 @@ constraintlayout = "2.1.4"
 ssp = "1.1.1"
 sdp = "1.1.1"
 splashscreen = "1.0.1"
+#appcompat-v7 = "23.2.0"
 
 room-version = "2.8.3"
 daggerHilt = "2.57.2"
@@ -37,6 +38,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 ssp = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "ssp" }
 sdp = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdp" }
 splashscreen = { group = "androidx.core", name = "core-splashscreen",  version.ref = "splashscreen"}
+#appcompat-v7 = { group = "com.android.support", name = "appcompat-v7", version.ref = "appcompat-v7"}
 
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-version" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-version" }
