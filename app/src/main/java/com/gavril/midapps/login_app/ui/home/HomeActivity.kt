@@ -23,6 +23,8 @@ import com.gavril.midapps.databinding.ActivityHomeBinding
 import com.gavril.midapps.databinding.ItemProductBinding
 import com.gavril.midapps.login_app.model.DataProduct
 import com.gavril.midapps.login_app.ui.SettingActivity
+import com.gavril.midapps.login_app.ui.home.bottom_sheet.BottomSheetFilterProducts
+import com.gavril.midapps.login_app.ui.home.bottom_sheet.BottomSheetShortingProducts
 import com.gavril.midapps.login_app.ui.login.AuthViewModel
 import com.gavril.midapps.login_app.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,6 +56,8 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
         val desc = "Hello," + session.getString(LoginActivity.FIRST_NAME) + " " + session.getString(LoginActivity.LAST_NAME)
         binding.tvOutput.text = desc
         binding.btnSettings.setOnClickListener (this)
+        binding.ftbFilter.setOnClickListener (this)
+        binding.ftbSort.setOnClickListener (this)
         binding.etSearch.editText?.doOnTextChanged { text, start, before, count ->
             val keyword = text.toString().trim()
             viewModel.getProduct(keyword)
@@ -75,9 +79,18 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     override fun onClick(v: View?){
         when(v){
             binding.btnSettings -> openActivity<SettingActivity>()
+            binding.ftbFilter -> {
+                val btmSht = BottomSheetFilterProducts { filter ->
+                    viewModel.filterProduct(filter) }
+                btmSht.show(supportFragmentManager, "BtmShtFilteringProducts")
+            }
+            binding.ftbSort -> {
+                val btmSht = BottomSheetShortingProducts { sortBy, order ->
+                    viewModel.sortProduct(sortBy, order) }
+                btmSht.show(supportFragmentManager, "BtmShtSortingProducts")
+            }
         }
     }
-
     private fun setting() {
         /*session.clearAll()
         session.setValue(CoreSession.PREF_UID, 0)

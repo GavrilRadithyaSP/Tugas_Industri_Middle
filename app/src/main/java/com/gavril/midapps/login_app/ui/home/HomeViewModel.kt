@@ -19,4 +19,14 @@ class HomeViewModel @Inject constructor(private val repoDataProduct: DataProduct
             _product.emit(it)
         }
     }
+    fun sortProduct(sortBy: String = "", order: String = "") = viewModelScope.launch {
+        repoDataProduct.sortProducts(sortBy, order).collect {
+            _product.emit(it)
+        }
+    }
+    fun filterProduct(filter: String = "") = viewModelScope.launch {
+        repoDataProduct.filterProducts(filter).collect {
+            _product.emit(it)
+        }
+    }
 }
