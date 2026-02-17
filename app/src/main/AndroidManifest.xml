@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM.SplashScreen.">
         <activity
+            android:name=".login_app.ui.DetailProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".login_app.ui.SettingActivity"
             android:exported="false" />
         <activity

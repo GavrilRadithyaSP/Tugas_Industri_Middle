@@ -7,6 +7,7 @@ import com.gavril.midapps.friend_app.database.MyDatabase
 import com.gavril.midapps.friend_app.database.dao.FriendDao
 import com.gavril.midapps.login_app.api.ApiService
 import com.gavril.midapps.session.PrefsMiddleApps
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +27,9 @@ class AppsModule {
     @Singleton
     @Provides
     fun provideCoreSession(@ApplicationContext context: Context) = CoreSession(context)
+    @Singleton
+    @Provides
+    fun provideGson() = Gson()
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext context: Context): MyDatabase = MyDatabase.getInstance(context)

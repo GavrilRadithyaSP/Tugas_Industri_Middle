@@ -19,7 +19,9 @@ import com.crocodic.core.base.adapter.PaginationLoadState
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.data.CoreSession
 import com.crocodic.core.extension.openActivity
+import com.crocodic.core.extension.toJson
 import com.crocodic.core.extension.tos
+import com.gavril.midapps.login_app.ui.DetailProductActivity
 import com.gavril.midapps.R
 import com.gavril.midapps.databinding.ActivityHomeBinding
 import com.gavril.midapps.databinding.ItemProductBinding
@@ -29,6 +31,7 @@ import com.gavril.midapps.login_app.ui.home.bottom_sheet.BottomSheetFilterProduc
 import com.gavril.midapps.login_app.ui.home.bottom_sheet.BottomSheetShortingProducts
 import com.gavril.midapps.login_app.ui.login.AuthViewModel
 import com.gavril.midapps.login_app.ui.login.LoginActivity
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,12 +39,19 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.activity_home) {
+    @Inject
+    lateinit var gson: Gson
     var inputKeyword = ""
     /*private val adapterCore by lazy {
         ReactiveListAdapter<ItemProductBinding, DataProduct>(R.layout.item_product).initItem { position, data -> tos("$position -> {$data.title}") }
     }*/
     private val pagingAdapterCore by lazy {
-        PaginationAdapter<ItemProductBinding, DataProduct>(R.layout.item_product).initItem { position, data -> tos("$position -> {$data.title}") }
+        PaginationAdapter<ItemProductBinding, DataProduct>(R.layout.item_product).initItem { position, data ->
+            openActivity <DetailProductActivity> {
+                val dataProduct = data.toJson(gson)
+                putExtra(DetailProductActivity.DATA, dataProduct)
+            }
+        }
     }
     @Inject
     lateinit var session: CoreSession
