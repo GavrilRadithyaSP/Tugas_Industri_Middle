@@ -14,6 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LOGGER
 import com.crocodic.core.base.activity.CoreActivity
+import com.crocodic.core.base.adapter.PaginationAdapter
+import com.crocodic.core.base.adapter.PaginationLoadState
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.data.CoreSession
 import com.crocodic.core.extension.openActivity
@@ -28,14 +30,18 @@ import com.gavril.midapps.login_app.ui.home.bottom_sheet.BottomSheetShortingProd
 import com.gavril.midapps.login_app.ui.login.AuthViewModel
 import com.gavril.midapps.login_app.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.activity_home) {
     var inputKeyword = ""
-    private val adapterCore by lazy {
+    /*private val adapterCore by lazy {
         ReactiveListAdapter<ItemProductBinding, DataProduct>(R.layout.item_product).initItem { position, data -> tos("$position -> {$data.title}") }
+    }*/
+    private val pagingAdapterCore by lazy {
+        PaginationAdapter<ItemProductBinding, DataProduct>(R.layout.item_product).initItem { position, data -> tos("$position -> {$data.title}") }
     }
     @Inject
     lateinit var session: CoreSession
@@ -52,7 +58,10 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
             AppCompatDelegate.MODE_NIGHT_NO
         )
         binding.activity = this
-        binding.rvShowData.adapter = adapterCore
+        with(pagingAdapterCore){
+            binding.rvShowData.adapter = withLoadStateFooter(PaginationLoadState.default)
+        }
+        /*binding.rvShowData.adapter = adapterCore*/
         val desc = "Hello," + session.getString(LoginActivity.FIRST_NAME) + " " + session.getString(LoginActivity.LAST_NAME)
         binding.tvOutput.text = desc
         binding.btnSettings.setOnClickListener (this)
@@ -63,15 +72,25 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
             viewModel.getProduct(keyword)
         }
         observe()
-        viewModel.getProduct()
+        /*viewModel.getProduct()*/
+        lifecycleScope.launch {
+            viewModel.queries.emit(Triple("", "", ""))
+        }
+    }
+    override fun onStart(){
+        super.onStart()
+        session.setValue("page", 0)
     }
     private fun observe(){
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                launch {
-                    viewModel.product.collect{data ->
+                /*launch {
+                    viewModel.product.collect{ data ->
                         adapterCore.submitList(data)
                     }
+                }*/
+                launch {
+                    viewModel.getPagingProducts().collectLatest { data -> pagingAdapterCore.submitData(data) }
                 }
             }
         }
